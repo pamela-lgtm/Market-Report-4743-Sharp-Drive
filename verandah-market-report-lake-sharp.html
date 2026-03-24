@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Reality Report · 4743 Lake Sharp Drive · Verandah Properties</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EF;
+    --sand: #EDE8DF;
+    --bark: #8B7355;
+    --bark-light: #BCA98A;
+    --forest: #2C3E2D;
+    --forest-mid: #4A6741;
+    --forest-light: #D4E4CE;
+    --danger: #8B3A2A;
+    --danger-light: #F5E8E5;
+    --amber: #B07D2E;
+    --amber-light: #F5EDD8;
+    --text: #1C1C1A;
+    --text-mid: #5A574F;
+    --text-muted: #9A9589;
+    --border: rgba(139,115,85,0.18);
+    --border-strong: rgba(139,115,85,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--forest);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 41px
+    );
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    position: relative;
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-mark svg { width: 20px; height: 20px; }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .report-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--bark-light);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .report-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .report-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* Body */
+  .body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  /* Metric cards */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .metric-card {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+  }
+  .metric-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* DOM Chart */
+  .dom-section { margin-bottom: 40px; }
+  .comp-table {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .comp-header {
+    display: grid;
+    grid-template-columns: 170px 1fr 52px 72px;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--sand);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .comp-row {
+    display: grid;
+    grid-template-columns: 170px 1fr 52px 72px;
+    gap: 8px;
+    padding: 12px 18px;
+    align-items: center;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { color: var(--text-mid); font-weight: 400; }
+  .bar-wrap {
+    background: var(--sand);
+    border-radius: 3px;
+    height: 7px;
+    overflow: hidden;
+  }
+  .bar { height: 7px; border-radius: 3px; }
+  .dom-num { text-align: right; font-weight: 500; font-size: 13px; }
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .badge-success { background: var(--forest-light); color: var(--forest); }
+  .badge-warning { background: var(--amber-light); color: var(--amber); }
+  .badge-danger { background: var(--danger-light); color: var(--danger); }
+  .badge-neutral { background: var(--sand); color: var(--text-muted); }
+  .comp-divider {
+    display: grid;
+    grid-template-columns: 170px 1fr 52px 72px;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(44,62,45,0.04);
+    font-size: 11px;
+    color: var(--forest-mid);
+    font-weight: 500;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  /* Calculator */
+  .calc-section {
+    margin-bottom: 40px;
+  }
+  .calc-card {
+    background: #fff;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+  }
+  .calc-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    line-height: 1.7;
+    max-width: 580px;
+  }
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .slider-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    width: 140px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    flex: 1;
+    height: 3px;
+    background: var(--sand);
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--forest);
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--forest);
+  }
+  .slider-val {
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 64px;
+    text-align: right;
+    color: var(--text);
+  }
+  .eff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .eff-card {
+    background: var(--sand);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .eff-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .eff-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .eff-sub { font-size: 11px; color: var(--text-muted); }
+  .insight-box {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: var(--sand);
+    border-left: 3px solid var(--bark);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-mid);
+  }
+
+  /* Active listings */
+  .active-section { margin-bottom: 40px; }
+
+  /* Key insight callout */
+  .callout {
+    background: var(--forest);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 180px;
+    line-height: 1;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    top: -20px;
+    left: 16px;
+    pointer-events: none;
+  }
+  .callout-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.5;
+    position: relative;
+  }
+  .callout-attr {
+    font-size: 11px;
+    color: var(--bark-light);
+    margin-top: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 0.5px solid var(--border-strong);
+    padding-top: 24px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .footer strong { color: var(--text-mid); font-weight: 500; }
+
+  /* Divider */
+  .divider {
+    height: 0.5px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .eff-grid { grid-template-columns: 1fr; }
+    .comp-header, .comp-row, .comp-divider {
+      grid-template-columns: 1fr 80px 48px 60px;
+    }
+    .header-inner { padding: 36px 20px 32px; }
+    .body { padding: 32px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="brand-row">
+      <div class="brand-mark">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2L3 8v9h5v-5h4v5h5V8L10 2z" stroke="rgba(255,255,255,0.75)" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <span class="brand-name">Verandah Properties</span>
+    </div>
+    <div class="report-eyebrow">Rental Market Reality Report</div>
+    <div class="report-title">4743 Lake Sharp Drive</div>
+    <div class="report-sub">Market data as of March 24, 2026 &nbsp;·&nbsp; 12 comparable rentals analyzed &nbsp;·&nbsp; Prepared by Pamela Syvertson</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Callout -->
+  <div class="callout" style="margin-top: 0; margin-bottom: 40px;">
+    <div class="callout-text">The question isn't whether $2,400 is fair rent — the data says it is. The question is whether we collect it for 12 months or 10.</div>
+    <div class="callout-attr">The vacancy reality &nbsp;·&nbsp; Verandah Properties</div>
+  </div>
+
+  <!-- Snapshot -->
+  <div class="section-eyebrow">Market snapshot — all 12 comparables</div>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Median rent</div>
+      <div class="metric-value">$2,400</div>
+      <div class="metric-sub">across all 12 comps</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Average rent</div>
+      <div class="metric-value">$2,439</div>
+      <div class="metric-sub">range: $2,159 – $2,800</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Leased SP/LP</div>
+      <div class="metric-value">99.7%</div>
+      <div class="metric-sub">avg across 6 leased comps</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Median CDOM</div>
+      <div class="metric-value">35 days</div>
+      <div class="metric-sub">avg 66 · max 251</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DOM Section -->
+  <div class="dom-section">
+    <div class="section-eyebrow">Days on market — leased comps</div>
+    <div class="section-title">What actually closed, and how long it took</div>
+
+    <div class="comp-table">
+      <div class="comp-header">
+        <span>Address</span>
+        <span>Days on market</span>
+        <span style="text-align:right;">DOM</span>
+        <span style="text-align:right;">Leased at</span>
+      </div>
+
+      <div class="comp-row">
+        <span class="comp-name">Linsbury St</span>
+        <div class="bar-wrap"><div class="bar" style="width:31%; background:var(--forest-mid);"></div></div>
+        <span class="dom-num" style="color:var(--forest);">33</span>
+        <span class="badge badge-success" style="justify-self:end;">100%</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Waterview Loop</span>
+        <div class="bar-wrap"><div class="bar" style="width:34%; background:var(--forest-mid);"></div></div>
+        <span class="dom-num" style="color:var(--forest);">36</span>
+        <span class="badge badge-success" style="justify-self:end;">100%</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Lake Twylo Rd</span>
+        <div class="bar-wrap"><div class="bar" style="width:40%; background:var(--amber);"></div></div>
+        <span class="dom-num" style="color:var(--amber);">43</span>
+        <span class="badge badge-warning" style="justify-self:end;">98.1%</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Abingdon Chase</span>
+        <div class="bar-wrap"><div class="bar" style="width:74%; background:var(--amber);"></div></div>
+        <span class="dom-num" style="color:var(--amber);">79</span>
+        <span class="badge badge-success" style="justify-self:end;">100%</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Buck Rd</span>
+        <div class="bar-wrap"><div class="bar" style="width:91%; background:var(--danger);"></div></div>
+        <span class="dom-num" style="color:var(--danger);">97</span>
+        <span class="badge badge-success" style="justify-self:end;">100%</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Greenview Pines</span>
+        <div class="bar-wrap"><div class="bar" style="width:100%; background:var(--danger);"></div></div>
+        <span class="dom-num" style="color:var(--danger);">107</span>
+        <span class="badge badge-success" style="justify-self:end;">100%</span>
+      </div>
+
+      <div class="comp-divider">
+        <span>Verandah 14-day goal</span>
+        <div class="bar-wrap" style="align-self:center;"><div class="bar" style="width:13%; background:#2C3E2D;"></div></div>
+        <span style="text-align:right; font-family:'Cormorant Garamond',serif; font-size:16px;">14</span>
+        <span class="badge badge-neutral" style="justify-self:end; font-size:10px;">Target</span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-muted); margin-top:10px; line-height:1.6;">
+      Homes leasing at 100% of ask averaged 67 DOM. The only comp below 40 days — Linsbury St and Waterview Loop — were almost certainly move-in ready and photographed well. Every week beyond 14 days is a direct, unrecoverable income loss.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Calculator -->
+  <div class="calc-section">
+    <div class="section-eyebrow">Vacancy cost calculator</div>
+    <div class="section-title">The number that actually matters</div>
+    <div class="calc-card">
+      <p class="calc-desc">The rent you advertise is not the rent you keep. Adjust the inputs below to see how days vacant erode your effective annual income — and why a modest investment in presentation pays for itself many times over.</p>
+
+      <div class="slider-row">
+        <span class="slider-label">Monthly rent ask</span>
+        <input type="range" min="2200" max="2700" step="25" value="2400" id="rent" oninput="calc()">
+        <span class="slider-val" id="rentOut">$2,400</span>
+      </div>
+      <div class="slider-row">
+        <span class="slider-label">Days vacant</span>
+        <input type="range" min="0" max="120" step="1" value="45" id="dom" oninput="calc()">
+        <span class="slider-val" id="domOut">45 days</span>
+      </div>
+
+      <div class="eff-grid" id="effGrid"></div>
+      <div class="insight-box" id="insight"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Active listings -->
+  <div class="active-section">
+    <div class="section-eyebrow">Active listings — still sitting</div>
+    <div class="section-title">4 comps, 0 leased. The market is telling us something.</div>
+
+    <div class="comp-table">
+      <div class="comp-header">
+        <span>Address</span>
+        <span>Days sitting</span>
+        <span style="text-align:right;">DOM</span>
+        <span style="text-align:right;">Asking</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Pickwick Dr (3/2)</span>
+        <div class="bar-wrap"><div class="bar" style="width:11%; background:var(--forest-mid);"></div></div>
+        <span class="dom-num">27</span>
+        <span style="text-align:right; font-size:13px;">$2,295</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Oakberry Dr (4/2)</span>
+        <div class="bar-wrap"><div class="bar" style="width:13%; background:var(--forest-mid);"></div></div>
+        <span class="dom-num">33</span>
+        <span style="text-align:right; font-size:13px;">$2,400</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">E Cheryl Dr (4/2)</span>
+        <div class="bar-wrap"><div class="bar" style="width:10%; background:var(--amber);"></div></div>
+        <span class="dom-num">26</span>
+        <span style="text-align:right; font-size:13px;">$2,650</span>
+      </div>
+      <div class="comp-row">
+        <span class="comp-name">Port Said (3/2)</span>
+        <div class="bar-wrap"><div class="bar" style="width:100%; background:var(--danger);"></div></div>
+        <span class="dom-num" style="color:var(--danger);">251</span>
+        <span style="text-align:right; font-size:13px;">$2,250</span>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:10px; line-height:1.6;">
+      Port Said at 251 days is not an anomaly — it's a preview. A home that sits accumulates deferred perception: prospects assume something is wrong. Price reductions rarely recover the lost momentum.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>Verandah Properties</strong> &nbsp;·&nbsp; Prepared by Pamela Syvertson, Broker &nbsp;·&nbsp; Lake Nona / Orlando, FL<br>
+    This is a Comparative Market Analysis and constitutes an opinion of value. It should not be considered a formal appraisal and has not been prepared in accordance with USPAP guidelines.<br>
+    Market data sourced from MLS via CoreLogic &nbsp;·&nbsp; As of March 24, 2026
+  </div>
+
+</div>
+
+<script>
+function calc() {
+  const rent = parseInt(document.getElementById('rent').value);
+  const dom = parseInt(document.getElementById('dom').value);
+  document.getElementById('rentOut').textContent = '$' + rent.toLocaleString();
+  document.getElementById('domOut').textContent = dom + ' days';
+
+  const vacancyLoss = Math.round((dom / 30) * rent);
+  const effectiveAnnual = Math.round(rent * 12 - vacancyLoss);
+  const effectiveMonthly = Math.round(effectiveAnnual / 12);
+  const goal14Loss = Math.round((14 / 30) * rent);
+  const goal14Annual = Math.round(rent * 12 - goal14Loss);
+  const delta = Math.abs(effectiveAnnual - goal14Annual);
+  const weekCost = Math.round(rent / 4);
+
+  const danger = dom > 45 ? 'var(--danger)' : dom > 20 ? 'var(--amber)' : 'var(--forest-mid)';
+
+  document.getElementById('effGrid').innerHTML = `
+    <div class="eff-card">
+      <div class="eff-label">Gross annual</div>
+      <div class="eff-value">$${(rent*12).toLocaleString()}</div>
+      <div class="eff-sub">what the owner sees</div>
+    </div>
+    <div class="eff-card">
+      <div class="eff-label">Effective annual income</div>
+      <div class="eff-value" style="color:${danger};">$${effectiveAnnual.toLocaleString()}</div>
+      <div class="eff-sub">≈ $${effectiveMonthly.toLocaleString()}/mo effective</div>
+    </div>
+    <div class="eff-card">
+      <div class="eff-label">Vacancy loss</div>
+      <div class="eff-value" style="color:var(--danger);">-$${vacancyLoss.toLocaleString()}</div>
+      <div class="eff-sub">unrecoverable this lease year</div>
+    </div>
+  `;
+
+  let msg = '';
+  if (dom <= 14) {
+    msg = `<strong style="color:var(--forest-mid);">On target.</strong> At ${dom} days vacant, effective monthly income is <strong>$${effectiveMonthly.toLocaleString()}</strong> — nearly the full ask. This is the 14-day goal in action.`;
+  } else {
+    msg = `At <strong>${dom} days vacant</strong>, the owner's effective monthly income drops to <strong>$${effectiveMonthly.toLocaleString()}</strong> — not $${rent.toLocaleString()}. Every additional week costs roughly <strong>$${weekCost.toLocaleString()}/week</strong>. Compared to a 14-day lease-up, this scenario costs the owner an additional <strong style="color:var(--danger);">$${delta.toLocaleString()}</strong> this lease year.`;
+  }
+  document.getElementById('insight').innerHTML = msg;
+}
+calc();
+</script>
+</body>
+</html>
